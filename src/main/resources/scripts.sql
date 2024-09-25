@@ -1,0 +1,12 @@
+//create database
+CREATE DATABASE `crediting` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+//create table
+CREATE TABLE employees (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    company VARCHAR(255) NOT NULL,
+    credit_balance DECIMAL(10, 2) DEFAULT 1000.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

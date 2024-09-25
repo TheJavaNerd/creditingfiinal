@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Balance</title>
+</head>
+<body>
+<h1>Check Employee Credit Balance</h1>
+<form id="balance-form">
+    <input type="email" id="email" placeholder="Email" required>
+    <button type="submit">Check Balance</button>
+</form>
+
+<p id="balance"></p>
+
+<script>
+    document.getElementById('balance-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+
+        fetch('/api/employees/balance', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        })
+        .then(response => response.json())
+        .then(data => document.getElementById('balance').textContent = 'Credit Balance: ' + data.credit)
+        .catch(error => alert('Error fetching balance: ' + error));
+    });
+</script>
+</body>
+</html>
